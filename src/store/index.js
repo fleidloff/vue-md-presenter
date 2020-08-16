@@ -1,8 +1,15 @@
 import { createStore } from 'vuex';
+//import debounce from 'lodash/debounce';
 
 export default createStore({
     state: {
-        content: 'Hello, Vuex',
+        content: `
+Hello, Vuex
+---
+PAGE 2
+---
+PAGE 3
+`,
     },
     mutations: {
         changeContent(state, content) {
