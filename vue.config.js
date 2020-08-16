@@ -1,4 +1,5 @@
 module.exports = {
-    publicPath: '/vue-md-presenter/',
+    publicPath:
+        process.env.NODE_ENV === 'production' ? '/vue-md-presenter/' : '/',
     outputDir: 'docs',
 };

@@ -23,9 +23,14 @@ export default {
 </script>
 
 <style scoped>
+.editor {
+    position: relative;
+    display: flex;
+}
 .editor textarea {
     border-color: rgb(89, 90, 88);
     border-top: 5px solid black;
     padding: 10px;
+    flex: 1;
 }
 </style>

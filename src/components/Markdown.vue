@@ -4,11 +4,12 @@
             <div :key="page" v-html="content" />
         </transition>
     </div>
-    <br />
-    <button v-on:click="updatePage(-1)">-</button>
-    <span>page: {{ currentPage }} / {{ numPages }}</span>
-    <button v-on:click="updatePage(+1)">+</button>
-    <arrow-handler v-bind:update="updatePage" />
+    <div class="markdown-pagination">
+        <button v-on:click="updatePage(-1)">-</button>
+        <span>page: {{ currentPage }} / {{ numPages }}</span>
+        <button v-on:click="updatePage(+1)">+</button>
+        <arrow-handler v-bind:update="updatePage" />
+    </div>
 </template>
 
 <script>
@@ -60,6 +61,9 @@ export default {
     border: 1px solid rgb(89, 90, 88);
     border-top: 5px solid black;
     padding: 10px;
+}
+.markdown-pagination button {
+    margin: 10px;
 }
 .slide-fade-enter-active,
 .slide-fade-leave-active {

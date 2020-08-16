@@ -15,6 +15,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    max-width: 1024px;
 }
 
 #nav {
@@ -28,5 +29,10 @@
 
 #nav a.router-link-exact-active {
     color: #42b983;
+}
+body,
+html {
+    padding: 0;
+    margin: 10px;
 }
 </style>
