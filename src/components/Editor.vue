@@ -1,7 +1,6 @@
 <template>
     <div class="editor">
         <textarea cols="30" rows="10" v-model="content" />
-        <div>content length: {{ contentLength }}</div>
     </div>
 </template>
 
@@ -18,9 +17,6 @@ export default {
             set(value) {
                 return this.$store.commit('changeContent', value);
             },
-        },
-        contentLength() {
-            return this.$store.state.content.length;
         },
     },
 };

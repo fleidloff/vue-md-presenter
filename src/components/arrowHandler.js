@@ -1,3 +1,16 @@
+function targetIsInputElement(ev) {
+    const target = ev.target || ev.srcElement;
+
+    switch (target.tagName.toUpperCase()) {
+        default:
+            return false;
+        case 'INPUT':
+        case 'TEXTAREA':
+        case 'SELECT':
+            return true;
+    }
+}
+
 export default {
     render() {
         return [];
@@ -11,6 +24,8 @@ export default {
     },
     methods: {
         onKeyPress(ev) {
+            if (targetIsInputElement(ev)) return;
+
             switch (ev.key) {
                 default:
                     break;

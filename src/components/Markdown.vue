@@ -4,6 +4,7 @@
             <div :key="page" v-html="content" />
         </transition>
     </div>
+    <br />
     <button v-on:click="updatePage(-1)">-</button>
     <span>page: {{ currentPage }} / {{ numPages }}</span>
     <button v-on:click="updatePage(+1)">+</button>
