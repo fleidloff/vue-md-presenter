@@ -1,40 +1,31 @@
 <template>
-    <div class="markdown" v-html="content" />
+    <div class="markdown">
+        <transition name="slide-fade" mode="out-in">
+            <div :key="page" v-html="content" />
+        </transition>
+    </div>
     <button v-on:click="updatePage(-1)">-</button>
     <span>page: {{ currentPage }} / {{ numPages }}</span>
     <button v-on:click="updatePage(+1)">+</button>
+    <arrow-handler v-bind:update="updatePage" />
 </template>
 
 <script>
 import { markdown } from 'markdown';
+import arrowHandler from './arrowHandler';
+
 export default {
+    components: {
+        'arrow-handler': arrowHandler,
+    },
     data() {
         return {
             page: 1,
         };
     },
-    mounted() {
-        window.addEventListener('keydown', this.onKeyPress);
-    },
-    unmounted() {
-        window.removeEventListener('keydown', this.onKeyPress);
-    },
     methods: {
         updatePage(update) {
             this.page = this.currentPage + update;
-        },
-        // todo: Composition API for keyboard stuff
-        onKeyPress(ev) {
-            switch (ev.key) {
-                default:
-                    break;
-                case 'ArrowLeft':
-                    this.updatePage(-1);
-                    break;
-                case 'ArrowRight':
-                    this.updatePage(1);
-                    break;
-            }
         },
     },
     computed: {
@@ -68,5 +59,13 @@ export default {
     border: 1px solid rgb(89, 90, 88);
     border-top: 5px solid black;
     padding: 10px;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+    opacity: 0;
 }
 </style>
