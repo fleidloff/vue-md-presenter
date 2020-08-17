@@ -10,6 +10,12 @@
         <button v-on:click="updatePage(+1)">+</button>
         <arrow-handler v-bind:update="updatePage" />
     </div>
+    <fullscreen v-on:fullscreen-ready="onFullscreenReady">
+        <div :key="page" v-html="content" />
+    </fullscreen>
+    <button v-if="toggleFullscreen" v-on:click="toggleFullscreen">
+        enter fullscreen
+    </button>
 </template>
 
 <script>
@@ -23,11 +29,15 @@ export default {
     data() {
         return {
             page: 1,
+            toggleFullscreen: null,
         };
     },
     methods: {
         updatePage(update) {
             this.page = this.currentPage + update;
+        },
+        onFullscreenReady(toggleFullscreen) {
+            this.toggleFullscreen = toggleFullscreen;
         },
     },
     computed: {
