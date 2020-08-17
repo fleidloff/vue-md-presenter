@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="fullscreen">
         <slot />
     </div>
 </template>
@@ -12,17 +12,35 @@ export default {
         };
     },
     methods: {
-        toggleFullscreen() {
-            this.fullscreen = !this.fullscreen;
-            this.$el.requestFullscreen();
+        requestFullscreen() {
+            this.fullscreen = true;
+            setTimeout(() => this.$el.requestFullscreen(), 0);
+        },
+        onFullscreenChange() {
+            if (document.fullscreenElement) {
+                this.fullscreen = true;
+            } else {
+                this.fullscreen = false;
+            }
         },
     },
     mounted() {
         if (!document.fullscreenEnabled) return;
-
-        this.$emit('fullscreen-ready', this.toggleFullscreen);
+        document.addEventListener('fullscreenchange', this.onFullscreenChange);
+        this.$emit('fullscreen-ready', this.requestFullscreen);
+    },
+    unmounted() {
+        document.removeEventListener(
+            'fullscreenchange',
+            this.onFullscreenChange,
+        );
     },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+:fullscreen {
+    background: white;
+    padding: 100px;
+}
+</style>

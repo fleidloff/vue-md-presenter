@@ -4,11 +4,36 @@ import { createStore } from 'vuex';
 export default createStore({
     state: {
         content: `
-Hello, Vuex
+
+# Hello, Vue World
+
+this is a simple markdown presentation thingy
 ---
-PAGE 2
+# It's just a proof of concept
+
+I wanted to learn vuejs and thought this was a cool little project.  
+If you don't like the design, please note: *there is no design, yet!*
 ---
-PAGE 3
+# Pages
+Pages can be split using three dashes
+---
+# Lists
+* Lists
+* are 
+* supported
+---
+# Like everything else markdown
+---
+# Todos
+*this list is uncomplete, just ideas*
+
+* some way to include graphs
+* nice tables
+* giphy?
+* images
+* progress indicator
+* styling
+        
 `,
     },
     mutations: {

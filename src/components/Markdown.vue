@@ -11,9 +11,11 @@
         <arrow-handler v-bind:update="updatePage" />
     </div>
     <fullscreen v-on:fullscreen-ready="onFullscreenReady">
-        <div :key="page" v-html="content" />
+        <transition name="slide-fade" mode="out-in">
+            <div :key="page" v-html="content" />
+        </transition>
     </fullscreen>
-    <button v-if="toggleFullscreen" v-on:click="toggleFullscreen">
+    <button v-if="requestFullscreen" v-on:click="requestFullscreen">
         enter fullscreen
     </button>
 </template>
@@ -29,15 +31,15 @@ export default {
     data() {
         return {
             page: 1,
-            toggleFullscreen: null,
+            requestFullscreen: null,
         };
     },
     methods: {
         updatePage(update) {
             this.page = this.currentPage + update;
         },
-        onFullscreenReady(toggleFullscreen) {
-            this.toggleFullscreen = toggleFullscreen;
+        onFullscreenReady(requestFullscreen) {
+            this.requestFullscreen = requestFullscreen;
         },
     },
     computed: {
