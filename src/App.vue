@@ -26,22 +26,22 @@
     font-weight: bold;
     color: #2c3e50;
     transition: all 0.3s ease;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
     text-decoration: none;
     margin-bottom: 0;
     padding-bottom: 3px;
 }
 
 #nav a:hover {
-    margin-bottom: 3px;
-    padding-bottom: 0;
+    margin-bottom: 2px;
+    padding-bottom: 1px;
     border-bottom: 1px solid #42b983;
 }
 #nav a.router-link-exact-active {
     color: #42b983;
     margin-bottom: 0;
     padding-bottom: 3px;
-    border-bottom: 1px solid #42b983;
+    border-bottom: 2px solid #42b983;
 }
 
 body,
