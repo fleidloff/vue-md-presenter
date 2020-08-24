@@ -8,36 +8,39 @@
         <button v-on:click="updatePage(-1)">-</button>
         <span>page: {{ currentPage }} / {{ numPages }}</span>
         <button v-on:click="updatePage(+1)">+</button>
-        <arrow-handler v-bind:update="updatePage" />
     </div>
     <fullscreen v-on:fullscreen-ready="onFullscreenReady">
         <transition name="slide-fade" mode="out-in">
             <div :key="page" v-html="content" />
         </transition>
     </fullscreen>
-    <button v-if="requestFullscreen" v-on:click="requestFullscreen">
-        enter fullscreen
-    </button>
+    <button v-if="requestFullscreen" v-on:click="requestFullscreen">enter fullscreen</button>
 </template>
 
 <script>
 import { markdown } from 'markdown';
-import arrowHandler from './arrowHandler';
+import useArrowKeys from '../composables/useArrowKeys';
+import useState from '../composables/useState';
 
 export default {
-    components: {
-        'arrow-handler': arrowHandler,
+    setup() {
+        const [page, setPage] = useState(1);
+        function updatePage(update) {
+            setPage((page) => page + update);
+        }
+        useArrowKeys({ update: updatePage });
+
+        return {
+            page,
+            updatePage,
+        };
     },
     data() {
         return {
-            page: 1,
             requestFullscreen: null,
         };
     },
     methods: {
-        updatePage(update) {
-            this.page = this.currentPage + update;
-        },
         onFullscreenReady(requestFullscreen) {
             this.requestFullscreen = requestFullscreen;
         },

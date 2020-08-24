@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["present"],{9647:function(e,n,t){"use strict";t.r(n);var c=t("5c40"),r={class:"present"};function s(e,n){var t=Object(c["y"])("markdown");return Object(c["t"])(),Object(c["e"])("div",r,[Object(c["j"])(t)])}const o={};o.render=s;n["default"]=o}}]);
+//# sourceMappingURL=present.7756e961.js.map
